@@ -16,5 +16,4 @@ Desenvolva uma página web utilizando React e a biblioteca Web3.js ou EthersJS q
 
 Por favor, organize seu código de maneira lógica e modular, e inclua comentários claros quando necessário. A qualidade do código, a aderência às melhores práticas e a atenção aos detalhes serão avaliadas.
 
-
 Para testes, pode se utilizar do ERC20.sol, contrato 0xdac17f958d2ee523a2206206994597c13d831ec7 e rede Ethereum.

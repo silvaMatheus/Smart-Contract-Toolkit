@@ -1,10 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { UploadCloud } from "lucide-react";
+import { FileCheckIcon, FilePlusIcon, FileXIcon } from "lucide-react";
 import React, { ChangeEvent, useRef, useState } from "react";
 
-interface DropzoneProps
+export interface DropzoneProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     "value" | "onChange"
@@ -14,6 +14,8 @@ interface DropzoneProps
   dropMessage: string;
   acceptedTypes?: string;
   handleOnDrop: (acceptedFiles: FileList | null) => void;
+  status: "empty" | "error" | "processing" | "success";
+  errorMessage?: string;
 }
 
 const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
@@ -22,8 +24,9 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
       className,
       classNameWrapper,
       dropMessage,
-
       handleOnDrop,
+      status,
+      errorMessage,
       ...props
     },
     ref
@@ -75,25 +78,38 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
           onDrop={handleDrop}
           onClick={handleButtonClick}
         >
-          <div className="h-full flex flex-col items-center justify-center text-muted-foreground">
-            {!fileAdded && <span className="font-medium">{dropMessage}</span>}
+          <div className=" h-full flex flex-col items-center justify-center text-muted-foreground">
+            <div className="flex flex-col gap-2 items-center space-x-2">
+              {status === "empty" && (
+                <>
+                  <FilePlusIcon />
+                  <span className="font-medium">{dropMessage}</span>
+                </>
+              )}
 
-            {loading && (
-              <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                <div
-                  className="bg-blue-600 h-2.5 rounded-full"
-                  style={{ width: "70%" }}
-                ></div>
-              </div>
-            )}
+              {status === "processing" && (
+                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div
+                    className="bg-blue-600 h-2.5 rounded-full"
+                    style={{ width: "70%" }}
+                  ></div>
+                </div>
+              )}
 
-            {fileAdded && (
-              <div className="flex items-center space-x-2">
-                <UploadCloud />
-                <span>{fileName}</span>
-              </div>
-            )}
+              {status === "error" && (
+                <>
+                  <FileXIcon />
+                  <span className="font-medium"> {dropMessage} </span>
+                </>
+              )}
 
+              {status === "success" && (
+                <>
+                  <FileCheckIcon />
+                  <span>{fileName}</span>
+                </>
+              )}
+            </div>
             <Input
               {...props}
               value={undefined}
