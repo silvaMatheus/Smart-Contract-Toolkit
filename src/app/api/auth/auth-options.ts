@@ -3,9 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { getCsrfToken } from "next-auth/react";
 import { SiweMessage } from "siwe";
 
-console.log(process.env.NEXTAUTH_SECRET);
-console.log(process.env.NEXTAUTH_URL);
-
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
