@@ -49,9 +49,6 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  pages: {
-    signIn: "/auth/signin",
-  },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }: { session: any; token: any }) {

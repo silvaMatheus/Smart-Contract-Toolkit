@@ -59,7 +59,7 @@ const WalletConnect: React.FC = () => {
         message: JSON.stringify(message),
         signature,
         redirect: true,
-        callbackUrl: "/app",
+        callbackUrl: "/main",
       });
     } catch (error) {
       console.error("Login failed:", error);
@@ -72,7 +72,6 @@ const WalletConnect: React.FC = () => {
     },
     onDisconnect: () => {
       console.log("disconnected");
-
       router.push("/auth");
     },
   });

@@ -6,16 +6,10 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (pathname === "/auth" && token) {
-    console.log('pathname === "/auth" && token');
-    console.log(`token ${token}`);
-
-    return NextResponse.redirect(new URL(getUrl("/app")));
+    return NextResponse.redirect(new URL(getUrl("/main")));
   }
 
-  if (pathname.includes("/app") && !token) {
-    console.log(pathname.includes("/app") && !token);
-    console.log(pathname);
-
+  if (pathname.includes("/main") && !token) {
     return NextResponse.redirect(new URL(getUrl("/auth")));
   }
 }
