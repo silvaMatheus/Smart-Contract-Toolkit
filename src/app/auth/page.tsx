@@ -10,6 +10,7 @@ export default function Page() {
       >
         <WalletConnect />
       </div>
+      ,atheus
       <div className="hidden bg-muted lg:block">
         <Image
           src="/placeholder.svg"

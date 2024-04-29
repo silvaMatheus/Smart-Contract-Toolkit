@@ -26,6 +26,7 @@ export const authOptions: NextAuthOptions = {
           const siwe = new SiweMessage(
             JSON.parse(credentials?.message || "{}")
           );
+          console.log(siwe);
           const nextAuthUrl = new URL(process.env.NEXTAUTH_URL as string);
 
           const result = await siwe.verify({
