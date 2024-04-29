@@ -1,13 +1,13 @@
 "use client";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DeployContractForm } from "./deploy-contract";
 import InteractWithContractForm from "./interact-contract";
 
 export default function SmartContractInteract() {
   return (
-    <Card className="w-full">
+    <div className="w-full">
       <CardContent>
         <CardHeader title="Smart Contract Management">
           Here you can deploy a new contract or interact with an existing one.
@@ -33,6 +33,6 @@ export default function SmartContractInteract() {
           </TabsContent>
         </Tabs>
       </CardContent>
-    </Card>
+    </div>
   );
 }

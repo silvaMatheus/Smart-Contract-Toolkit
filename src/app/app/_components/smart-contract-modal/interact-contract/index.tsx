@@ -127,19 +127,6 @@ const InteractWithContractForm = () => {
     reader.readAsText(file);
   };
 
-  const checkFieldsBeforeSubmit = () => {
-    const fields = form.getValues();
-    Object.entries(fields).forEach(([key, value]) => {
-      if (!value) {
-        console.log(`Field ${key} is not filled in.`);
-        toast({
-          title: "Missing Field",
-          description: `Please fill in the ${key} field.`,
-        });
-      }
-    });
-  };
-
   return (
     <div className="space-y-5">
       <CardHeader className="p-0">

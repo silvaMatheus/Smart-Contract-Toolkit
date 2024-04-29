@@ -1,6 +1,5 @@
 import { useContractStore } from "@/context/store";
 import { ContractFunctionProps } from "@/types/contracts.types";
-import { useQueryClient } from "@tanstack/react-query";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { useEthersSigner } from "./useEthersSigner";
@@ -17,10 +16,10 @@ const useLoadAndHandleContract = () => {
     contract: newContract,
     abi: contractAbi,
     setContract: updateContractStore,
+    addLogItem,
   } = useContractStore();
 
   const signer = useEthersSigner();
-  const queryClient = useQueryClient();
 
   const [contract, setContract] = useState<ethers.Contract | null>(null);
   const [functions, setFunctions] = useState<Array<ContractFunctionProps>>([]);
@@ -68,19 +67,20 @@ const useLoadAndHandleContract = () => {
             }));
           setFunctions(extractedFunctions);
         } else {
-          console.error("newContract is null.");
           setContract(null);
+          addLogItem({ type: "normal", message: "newContract is null." });
         }
         setFeedback("Contract loaded successfully.");
       } catch (error) {
         console.error("Failed to load contract:", error);
         setFeedback("Failed to load contract.");
+        addLogItem({ type: "normal", message: "Failed to load contract." });
       } finally {
         setLoading(false);
       }
     };
     loadContract();
-  }, [signer, newContract, contractAbi]);
+  }, [signer, newContract, contractAbi, addLogItem]);
 
   const handleFunctionCall = async (
     func: { name: string; stateMutability: string },
@@ -88,6 +88,7 @@ const useLoadAndHandleContract = () => {
   ) => {
     if (!contract) {
       setFeedback("Contract not loaded.");
+      addLogItem({ type: "normal", message: "Contract not loaded." });
       return;
     }
     setLoading(true);
@@ -105,10 +106,18 @@ const useLoadAndHandleContract = () => {
       setResult(resultString);
       setFeedback(`Success: ${func.name} executed.`);
       setHasRunFunction(true);
+      addLogItem({
+        type: "normal",
+        message: `Success: ${func.name} executed.`,
+      });
     } catch (error: any) {
       console.error(`Error executing function ${func.name}:`, error);
       setFeedback(`Error: ${error.message}`);
       setHasRunFunction(true);
+      addLogItem({
+        type: "normal",
+        message: `Error executing function ${func.name}: ${error.message}`,
+      });
     } finally {
       setLoading(false);
       setIsRunningFunction(false);

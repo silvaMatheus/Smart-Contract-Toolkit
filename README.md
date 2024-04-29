@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img alt="Portfolio Cover Image" src="public/Screenshot.png">
+</p>
 
-## Getting Started
+<h1 align="center">
+<a href="https://matheusdeveloper.com" target="_blank">  My Personal Website
+</a>
+</h1>
 
-First, run the development server:
+<p align="center">
+  Welcome to my newly designed personal website! This site is a vibrant showcase of my professional journey, including my recent projects, experiences, and skills. It reflects the diverse aspects of my development career and the milestones that have shaped my path. Dive in and get inspired!
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Highlights
+
+- ⚡️ **Next.js** - Powers the front-end for seamless server-side rendering and optimal user experience.
+- 🎨 **Tailwind CSS** - Provides styling for a stylish and responsive design.
+- 🎭 **Framer Motion** - Adds smooth and engaging animations, enhancing the interactive feel.
+- 🚀 **Vercel** - Ensures fast and reliable deployment, giving life to this project on the web.
+
+## Deployed with Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Famannn%2Fnext-intl%2Ftree%2Fmain%2Fexamples%2Fexample-app-router)
+
+## Running locally
+
+1. Clone this repo:
+
+```sh
+$ git clone https://github.com/silvaMatheus/matheusdeveloper.com.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Then go to the project's folder:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+cd matheusdeveloper.com
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install all dependencies:
 
-## Learn More
+```sh
+pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run locally:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+pnpm run dev
+```

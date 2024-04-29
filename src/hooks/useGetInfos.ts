@@ -1,4 +1,4 @@
-import { FormValues } from "@/app/app/(main)/_components/smart-contract-modal/interact-contract";
+import { FormValues } from "@/app/app/_components/smart-contract-modal/interact-contract";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 

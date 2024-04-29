@@ -26,7 +26,10 @@ export default function Account() {
             Disconnect
           </Button>
           <div className="flex items-center gap-2">
-            <div>{ensName ? `${ensName} (${address})` : address}</div>
+            <div className="hidden sm:flex">
+              {ensName ? `${ensName} (${address})` : address}
+            </div>
+
             <Avatar>
               <AvatarImage
                 src={ensAvatar || ""}

@@ -3,48 +3,81 @@
 import { Accordion } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useLoadAndHandleContract from "@/hooks/useLoadContract";
-import SmartContractInteract from "./(main)/_components/smart-contract-modal";
 import FunctionCard from "./_components/function";
+import { Log } from "./_components/log";
+import SheetLogs from "./_components/log/sheetLog";
+import Overview from "./_components/overview";
+import { SheetInteractContract } from "./_components/sheet-interact";
 
 export default function Home() {
-  const {
-    contract,
-    functions,
-    feedback,
-    result,
-    hasRunFunction,
-    handleFunctionCall,
-  } = useLoadAndHandleContract();
+  const { functions } = useLoadAndHandleContract();
 
   return (
     <>
-      <main className="h-full grid items-center p-10 grid grid-cols-12">
-        <div className="flex w-full h-full justify-center col-span-4">
-          <SmartContractInteract />
-        </div>
+      <div className="flex h-[calc(100vh-4rem)] w-full flex-col bg-muted/40 overflow-hidden">
+        <main className="flex gap-4 p-4 md:gap-8 w-full h-full">
+          {functions.length > 0 && (
+            <>
+              <div className="items-start gap-4 flex flex-col sm:w-8/12 px-5 w-full md:gap-8 h-full">
+                <Overview />
 
-        <div className="overflow-y-auto px-10 h-full col-span-8">
-          <Tabs defaultValue="read">
-            <div className="flex items-center">
-              <TabsList>
-                <TabsTrigger value="read">Read</TabsTrigger>
-                <TabsTrigger value="write">Write</TabsTrigger>
-              </TabsList>
+                <div className="w-full h-full col-span-8">
+                  <Tabs defaultValue="read">
+                    <div className="flex items-center mb-5">
+                      <TabsList>
+                        <TabsTrigger value="read">Read</TabsTrigger>
+                        <TabsTrigger value="write">Write</TabsTrigger>
+                      </TabsList>
+                    </div>
+                    <div className="h-[calc(100vh-20rem)] w-full overflow-y-auto">
+                      {functions.map((func, index) => (
+                        <TabsContent
+                          key={index}
+                          value={
+                            func.stateMutability === "view" ? "read" : "write"
+                          }
+                        >
+                          <Accordion
+                            type="single"
+                            collapsible
+                            className="w-full"
+                          >
+                            <FunctionCard func={func} />
+                          </Accordion>
+                        </TabsContent>
+                      ))}
+                    </div>
+                  </Tabs>
+                </div>
+              </div>
+
+              <div className="sm:w-4/12 max-w-full">
+                <Log />
+              </div>
+            </>
+          )}
+
+          {functions.length === 0 && (
+            <div className="items-start gap-4 w-full w-full md:gap-8 h-full">
+              <div className="flex items-center justify-center rounded-lg h-full border border-dashed shadow-sm w-full">
+                <div className="flex flex-col items-center gap-1 text-center gap-5">
+                  <h3 className="text-2xl font-bold tracking-tight">
+                    Interact with contract
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    You can start selling as soon as you add a product.
+                  </p>
+                  <SheetInteractContract />
+                </div>
+              </div>
             </div>
+          )}
 
-            {functions.map((func, index) => (
-              <TabsContent
-                key={index}
-                value={func.stateMutability === "view" ? "read" : "write"}
-              >
-                <Accordion type="single" collapsible className="w-full">
-                  <FunctionCard func={func} />
-                </Accordion>
-              </TabsContent>
-            ))}
-          </Tabs>
-        </div>
-      </main>
+          <div className="fixed bottom-5 rigth-5 flex sm:hidden">
+            <SheetLogs />
+          </div>
+        </main>
+      </div>
     </>
   );
 }
