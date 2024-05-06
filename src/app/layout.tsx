@@ -7,6 +7,7 @@ import { config } from "@/lib/wagmi/config";
 import RootProvider from "@/provider";
 import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,7 +34,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <main className="h-[calc(100vh-4rem)]">{children}</main>
           </ThemeProvider>
           <Toaster />
         </RootProvider>
