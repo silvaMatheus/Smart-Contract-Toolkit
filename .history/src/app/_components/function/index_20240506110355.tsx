@@ -89,9 +89,8 @@ export default function FunctionCard({
             </div>
           ))}
           <div className="flex items-center gap-2">
-            <Label htmlFor="showCustomGasInput">Show Custom Gas Input:</Label>
+            <Label>Show Custom Gas Input:</Label>
             <input
-              id="showCustomGasInput"
               type="checkbox"
               checked={showGasInput}
               onChange={(e) => setShowGasInput(e.target.checked)}
